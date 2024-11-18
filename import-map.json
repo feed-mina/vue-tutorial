@@ -1,0 +1,10 @@
+{
+  "imports": {
+    "vue": "https://play.vuejs.org/vue.runtime.esm-browser.js",
+    "vue/server-renderer": "https://play.vuejs.org/server-renderer.esm-browser.js",
+    "lodash-es" : "https://cdn.jsdelivr.net/npm/lodash-es@4.17.21/lodash.min.js",
+    "marked" : "https://cdn.jsdelivr.net/npm/marked/marked.min.js",
+    "vue-debounce" : "https://unpkg.com/vue-debounce@latest/dist/vue-debounce.min.js"
+  },
+  "scopes": {}
+}

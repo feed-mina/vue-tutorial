@@ -1,0 +1,21 @@
+{
+  "name": "vite-vue-starter",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "esbuild": "^0.24.0",
+    "lodash-es": "^4.17.21",
+    "marked": "^4.0.12",
+    "vue": "^3.4.0",
+    "vue-debounce": "^5.0.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.5",
+    "vite": "^5.4.11"
+  }
+}
