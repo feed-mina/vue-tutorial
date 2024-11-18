@@ -250,8 +250,10 @@ function removeSVG(stat) {
 
 <template>
     <div>
-      <div class="selectSection">
-        <div >
+              
+        <h1>{{ message }}</h1>  
+        <div class="componentSection">
+          <h1>단순한 컴포넌트</h1>
           <ol>
             <TodoItem
             v-for="item in groceryList"
@@ -260,17 +262,20 @@ function removeSVG(stat) {
             >
             </TodoItem>
           </ol>
+        </div>
 
 
-            <h2>Text Input  </h2>
+          <div class="formSection">
+            <h1>Form 바인딩</h1>
+            <h2>텍스트 입력하기 </h2>
               <input v-model="text">
               {{text}}
               
-            <h2>checkedbox</h2>
+            <h2>체크박스</h2>
               <input type="checkbox" id="checkbox" v-model="checked">
               <label for="checkbox">Checked :{{checked }}</label>
                     
-            <h2> Multi checkbox  </h2>         
+            <h2> 멀티 체크박스  </h2>         
               <input type="checkbox" id="jack" value="Jack" 
               v-model="checkedNames">
               
@@ -285,7 +290,8 @@ function removeSVG(stat) {
               v-model="checkedNames">
               <label for="mike">Mike</label>
               <p>checkedNames : {{checkedNames}}</p>
-              <h2>Radio</h2>
+
+              <h2>라디오 버튼</h2>
               <input type="radio" id="one" value="One" v-model="picked">
               <label for="one">One</label>
               
@@ -294,7 +300,7 @@ function removeSVG(stat) {
               <label for="two">Two</label>
               <p>picked : {{picked}}</p>
               
-              <h2>Select</h2>
+              <h2>셀랙트 박스</h2>
               <select v-model="selected">
                 <option disabled value="">select one</option>
                 <option>A</option>
@@ -310,17 +316,25 @@ function removeSVG(stat) {
                 <option>C</option>
               </select>
               <p>selected : {{multiSelected}}</p> 
-              
-              <h1>{{ message }}</h1> 
-              <h1>{{message}}</h1>
-              <button @click="reverseMessage">reverseMessage</button>
-              <button @click="message += '!'">Append "!" 
-              </button>
-              <!-- <a href="www.naver.com" @click.prevent="notify">
-                A link with e.preventDefault()
-              </a> -->
 
-              <p>
+            </div>
+            
+              <div class="inputhandlingSection">
+                <h1>사용자 입력 핸들링</h1>
+                <button @click="reverseMessage">reverseMessage</button>
+                  <br>
+                
+                  <button @click="message += '!'">Append "!" 
+                </button>
+                  <br>
+                
+                  <a href="www.naver.com"  @click.prevent="notify">
+                  A link with e.preventDefault()
+                  </a>
+              </div>
+
+              <div class="PropsEXSection"> 
+                <p>
                 <span :title="message">
             여기에 마우스를 두면 몇 초 후에 타이틀이 뜹니다!
                 </span>
@@ -332,9 +346,11 @@ function removeSVG(stat) {
 
             <p :style="{color}" @click="toggleColor">
               이 문장을 클릭하면 초록색과 파랑색의 글자가 바뀝니다
-            </p>
+            </p> 
+            </div>
 
-            <button @click="show = !show">Toggle list</button>
+            <div class="vIFandVForSection"> 
+              <button @click="show = !show">Toggle list</button>
             <button @click="list.push(list.length + 1)">push number</button>
             <button @click="list.pop()">pop number</button>
             <button @click="list.reverse()">Reverse List</button>
@@ -342,13 +358,14 @@ function removeSVG(stat) {
               <li v-for="(item, index) in  list" :key="index">{{ item }}</li>
             </ul>
             <p v-else-if="list.length"> list is not empty , but hidden</p>
-            <p v-else>list is empty</p>
-        </div>
-      </div>
+            <p v-else>list is empty</p> 
+            </div>
+           
       
     <!--Markdown 편집기 -->
 
         <div class="MarkdownSection">
+          <h1>Markdown 편집기</h1>
           <div class="editor">
             <textarea class="input" :value="input" @input="update">
 
@@ -359,43 +376,47 @@ function removeSVG(stat) {
 
 
     <!-- 데이터 가져오기  --> 
-        <div class="listSection"  v-for="branch in branches" :key="branch">
-          <input
-            type="radio"
-            :id="branch"
-            :value="branch"
-            name="branch"
-            v-model="currentBranch" 
-          />     
-        <label :for="branch">{{ branch }}</label>  
+       <div class="listSection" >
+          <div  v-for="branch in branches" :key="branch">
+            <h1>데이터 가져오기</h1>
+            <input
+              type="radio"
+              :id="branch"
+              :value="branch"
+              name="branch"
+              v-model="currentBranch" 
+            />     
+          <label :for="branch">{{ branch }}</label>  
 
-          <p>vuejs/vue@{{ currentBranch }}</p>
-          <ul>
-              <!-- commits 반복에서 기본값 추가 -->
-              <li v-for="{ html_url, sha, author, commit } in commits" :key="sha || html_url">
-                <a :href="html_url" target="_blank" class="commit">
-                  {{ sha ? sha.substring(0, 7) : 'N/A' }}
-                </a>
-                - 
-                <span class="message">{{ commit?.message ? truncate(commit.message) : 'No message' }}</span><br>
-                
-                by 
-                <span class="author">
-                  <a :href="author?.html_url || '#'" target="_blank"> 
-                    {{ commit?.author?.name || 'Unknown Author' }}
+            <p>vuejs/vue@{{ currentBranch }}</p>
+            <ul>
+                <!-- commits 반복에서 기본값 추가 -->
+                <li v-for="{ html_url, sha, author, commit } in commits" :key="sha || html_url">
+                  <a :href="html_url" target="_blank" class="commit">
+                    {{ sha ? sha.substring(0, 7) : 'N/A' }}
                   </a>
-                </span>
-                
-                at 
-                <span class="date">
-                  {{ commit?.author?.date ? formatDate(commit.author.date) : 'Unknown Date' }}
-                </span>
-              </li>
-          </ul> 
-      </div>
+                  - 
+                  <span class="message">{{ commit?.message ? truncate(commit.message) : 'No message' }}</span><br>
+                  
+                  by 
+                  <span class="author">
+                    <a :href="author?.html_url || '#'" target="_blank"> 
+                      {{ commit?.author?.name || 'Unknown Author' }}
+                    </a>
+                  </span>
+                  
+                  at 
+                  <span class="date">
+                    {{ commit?.author?.date ? formatDate(commit.author.date) : 'Unknown Date' }}
+                  </span>
+                </li>
+            </ul> 
+        </div>
+       </div>
 
         <div class="fliterSection">
               <!-- 정렬과 필터가 있는 그리드 -->
+               <h1>정렬과 필터가 있는 그리드</h1>
               <form id="search">
               Search <input name="query" v-model="searchQuery">
             </form>
@@ -407,6 +428,7 @@ function removeSVG(stat) {
         </div>
 
         <div class="treeSection">
+          <h1>트리 뷰</h1>
           <!-- 트리뷰 -->
           <ul>
             <TreeItem class="item" :model="treeData"></TreeItem>
@@ -415,6 +437,7 @@ function removeSVG(stat) {
 
         <div class="modalSection">
           <!--모달 컴포넌트-->
+          <h1>트렌지션으로 모달 구현</h1>
           <button id="show-modal" @click="showModal = true">
             show Modal
           </button>
@@ -430,6 +453,7 @@ function removeSVG(stat) {
 
         <!--트렌직션으로 리스트 구현하기-->
         <div class="listSection">
+          <h1>트렌지션으로 리스트 구현</h1>
           <button @click="insert">Insert at random index</button>
           <button @click="reset">Reset</button>
           <button @click="shuffle">Shuffle</button>
@@ -442,6 +466,7 @@ function removeSVG(stat) {
         </div>
 
         <div class="todoSection"> 
+          <h1>TodoMVC</h1>
         <!--Todo-->
           <section class="todoapp">
             <header class="header">
@@ -503,7 +528,11 @@ function removeSVG(stat) {
 <style>
 @import "https://unpkg.com/todomvc-app-css@2.4.1/index.css";
 
-.selectSection,
+.inputhandlingSection,
+.vIFandVForSection,
+.PropsEXSection,
+.formSection,
+.componentSection,
 .modalSection,
 .treeSection,
 .fliterSection,
